@@ -24,6 +24,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C libft
+	@chmod 777 mlx_linux/configure
 	@$(MAKE) -C mlx_linux
 	echo "\033[36mMaking So Long\033[0m"
 	$(CC) $(OBJ) $(LIBFT) $(LIBX) $(LIBXFLAGS) -o $(NAME) -g
