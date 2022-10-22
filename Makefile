@@ -17,6 +17,7 @@ SRC = parser.c \
 		textures.c \
 		draw.c \
 		unitsize.c \
+		keys.c \
 
 OBJ = $(SRC:.c=.o)
 

@@ -53,5 +53,6 @@ void initplayer(t_solong *data, int y, int i);
 void gentextures(t_solong *data);
 void draw(t_solong *data);
 void setunitsize(t_solong *data);
+int ft_close(t_solong *data);
 
 #endif
