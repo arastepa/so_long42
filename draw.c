@@ -88,5 +88,6 @@ void draw(t_solong *data)
     }
     mlx_put_image_to_window(data->mlx, data->win, data->main_img.ptr, 0, 0);
     mlx_hook(data->win, 17, 0, ft_close, data);
+    mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_loop(data->mlx);
 }

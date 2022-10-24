@@ -7,8 +7,13 @@
 #include "stdio.h"
 #include <fcntl.h>
 #include "mlx_linux/mlx.h"
-# define SCREEN_WIDTH 1300
-# define SCREEN_HEIGHT 800
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_A 97
+
+
 typedef struct s_image
 {
     void *ptr;
@@ -54,5 +59,8 @@ void gentextures(t_solong *data);
 void draw(t_solong *data);
 void setunitsize(t_solong *data);
 int ft_close(t_solong *data);
+int key_press(int keycode, t_solong *data);
+void    my_mlx_pixel_put(t_image *data, int x, int y, int color);
+unsigned int	get_color(t_image *dat, int texx, int texy);
 
 #endif
