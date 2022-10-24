@@ -5,8 +5,11 @@ int ft_close(t_solong *data)
     ft_exit(data, "");
 }
 
-void move(t_solong *data, int y)
+int move(t_solong *data, int y)
 {
+    int t;
+
+    t = 0;
     data->map[data->playery][data->playerx] = '0';
     if (data->map[y][data->playerx] == '1')
         ;
@@ -15,6 +18,7 @@ void move(t_solong *data, int y)
         data->map[y][data->playerx] = '0';
         data->collect--;
         data->playery = y;
+        t = 1;
     }
     else if (data->map[y][data->playerx] == 'E')
     {
@@ -22,12 +26,19 @@ void move(t_solong *data, int y)
             ft_close(data);
     }
     else if (data->map[y][data->playerx] == '0')
+    {
         data->playery = y;
+        t = 1;
+    }
     data->map[data->playery][data->playerx] = 'P';
+    return (t);
 }
 
-void movehor(t_solong *data, int x)
+int movehor(t_solong *data, int x)
 {
+    int t;
+
+    t = 0;
     data->map[data->playery][data->playerx] = '0';
     if (data->map[data->playery][x] == '1')
         ;
@@ -36,6 +47,7 @@ void movehor(t_solong *data, int x)
         data->map[data->playery][x] = '0';
         data->collect--;
         data->playerx = x;
+        t = 1;
     }
     else if (data->map[data->playery][x] == 'E')
     {
@@ -43,8 +55,12 @@ void movehor(t_solong *data, int x)
             ft_close(data);
     }
     else if (data->map[data->playery][x] == '0')
+    {
         data->playerx = x;
+        t = 1;
+    }
     data->map[data->playery][data->playerx] = 'P';
+    return (t);
 
 }
 
@@ -54,22 +70,42 @@ int key_press(int keycode, t_solong *data)
         ft_close(data);
     if (keycode == KEY_W)
     {
-        move(data, data->playery - 1);
+        if (move(data, data->playery - 1))
+        {
+            data->counter++;
+            ft_putnbr_fd(data->counter, 1);
+            ft_putstr_fd(" moves\n", 1);
+        }
         drawall(data);
     }
     else if (keycode == KEY_A)
     {
-        movehor(data, data->playerx - 1);
+        if (movehor(data, data->playerx - 1))
+        {
+            data->counter++;
+            ft_putnbr_fd(data->counter, 1);
+            ft_putstr_fd(" moves\n", 1);
+        }
         drawall(data);
     }
     else if (keycode == KEY_S)
     {
-         move(data, data->playery + 1);
+        if (move(data, data->playery + 1))
+        {
+            data->counter++;
+            ft_putnbr_fd(data->counter, 1);
+            ft_putstr_fd(" moves\n", 1);
+        }
          drawall(data);
     }
     else if (keycode == KEY_D)
     {
-        movehor(data, data->playerx + 1);
+        if (movehor(data, data->playerx + 1))
+        {
+            data->counter++;
+            ft_putnbr_fd(data->counter, 1);
+            ft_putstr_fd(" moves\n", 1);
+        }
         drawall(data);
     }
 }

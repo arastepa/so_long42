@@ -8,6 +8,7 @@ void initmap(t_solong *data)
     data->collect = 0;
     data->playerx = -1;
     data->playery = -1;
+    data->counter = 0;
 }
 
 void initplayer(t_solong *data,  int y, int i)

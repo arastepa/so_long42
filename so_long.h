@@ -45,6 +45,7 @@ typedef struct s_solong
     t_image main_img;
     t_image current;
     int unitsize;
+    int counter;
 }               t_solong;
 
 
