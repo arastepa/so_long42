@@ -33,6 +33,7 @@ int checkheight(char *f, t_solong *data)
         i++;
         if (ft_strchr(line, 'E'))
             exit = 1;
+        free(line);
         t = get_next_line(fd, &line);
     }
     if (exit == 0)
@@ -138,6 +139,7 @@ void parse(int fd, char *f)
         if (data->x != ft_strlen(line))
             ft_exit(data, "Error: map must be rectangular\n");
         getmapline(line, data);
+        free(line);
         t = get_next_line(fd, &line);
     }
     if (data->playerx < 0 && data->playery < 0)
