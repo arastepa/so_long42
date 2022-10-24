@@ -62,5 +62,6 @@ int ft_close(t_solong *data);
 int key_press(int keycode, t_solong *data);
 void    my_mlx_pixel_put(t_image *data, int x, int y, int color);
 unsigned int	get_color(t_image *dat, int texx, int texy);
+void drawall(t_solong *data);
 
 #endif

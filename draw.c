@@ -62,17 +62,12 @@ void drawcolor(t_solong *data, int i, int j, char value)
     }
 }
 
-void draw(t_solong *data)
+void drawall(t_solong *data)
 {
     int i;
     int j;
     char value;
-
-    setunitsize(data);
-    data->win = mlx_new_window(data->mlx, data->unitsize * data->x, data->unitsize * data->y, "Hello world!");
-   	data->main_img.ptr = mlx_new_image(data->mlx, data->unitsize * data->x, data->unitsize * data->y);
-    data->main_img.addr = mlx_get_data_addr(data->main_img.ptr, &(data->main_img.bpp), &(data->main_img.linelen),\
-								&(data->main_img.endian));
+    
     i = 0;
     while (i < data->y)
     {
@@ -87,6 +82,20 @@ void draw(t_solong *data)
         i++;
     }
     mlx_put_image_to_window(data->mlx, data->win, data->main_img.ptr, 0, 0);
+}
+
+void draw(t_solong *data)
+{
+    int i;
+    int j;
+    char value;
+
+    setunitsize(data);
+    data->win = mlx_new_window(data->mlx, data->unitsize * data->x, data->unitsize * data->y, "Hello world!");
+   	data->main_img.ptr = mlx_new_image(data->mlx, data->unitsize * data->x, data->unitsize * data->y);
+    data->main_img.addr = mlx_get_data_addr(data->main_img.ptr, &(data->main_img.bpp), &(data->main_img.linelen),\
+								&(data->main_img.endian));
+    drawall(data);
     mlx_hook(data->win, 17, 0, ft_close, data);
     mlx_hook(data->win, 2, 1L << 0, key_press, data);
 	mlx_loop(data->mlx);
