@@ -36,6 +36,7 @@ int checkheight(char *f, t_solong *data)
         free(line);
         t = get_next_line(fd, &line);
     }
+    free(line);
     if (exit == 0)
     {
         close(fd);
@@ -142,6 +143,7 @@ void parse(int fd, char *f)
         free(line);
         t = get_next_line(fd, &line);
     }
+    free(line);
     if (data->playerx < 0 && data->playery < 0)
         ft_exit(data, "error: ther's no player\n");
     if (data->collect == 0)
