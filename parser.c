@@ -27,16 +27,22 @@ int checkheight(char *f, t_solong *data)
     exit = 0;
     i = 0;
     fd = open(f, O_RDONLY);
-    t = get_next_line(fd, &line);
+    t = 1;
     while (t)
     {
-        i++;
+        t = get_next_line(fd, &line);
+        if (!t)
+        {
+            free(line);
+            break ;
+        }
         if (ft_strchr(line, 'E'))
             exit = 1;
+        if (data->x == 0)
+            data->x = ft_strlen(line);
+        i++;
         free(line);
-        t = get_next_line(fd, &line);
     }
-    free(line);
     if (exit == 0)
     {
         close(fd);
@@ -127,23 +133,28 @@ void parse(int fd, char *f)
     initmap(data);
     data->y = checkheight(f, data);
     data->map = (char **)malloc(sizeof(char *) * (data->y));
-    t = get_next_line(fd, &line);
-    data->x = ft_strlen(line);
     while (i < data->y)
     {
-        data->map[i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+        data->map[i] = (char *)malloc(sizeof(char) * (data->x + 1));
         i++;
     }
     data->y = 0;
+    t = 1;
     while (t)
     {
+        t = get_next_line(fd, &line);
+        if (!t)
+        {
+            free(line);
+            break ;
+        }
         if (data->x != ft_strlen(line))
+        {
             ft_exit(data, "Error: map must be rectangular\n");
+        }
         getmapline(line, data);
         free(line);
-        t = get_next_line(fd, &line);
     }
-    free(line);
     if (data->playerx < 0 && data->playery < 0)
         ft_exit(data, "error: ther's no player\n");
     if (data->collect == 0)
